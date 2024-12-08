@@ -38,16 +38,111 @@ const SimliAgent: React.FC<SimliAgentProps> = ({ onStart, onClose }) => {
     const response = await fetch("https://api.simli.ai/startE2ESession", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+          "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        apiKey: SIMLI_API_KEY,
-        faceId: "",
-        voiceId: "",
-        firstMessage: "",
-        systemPrompt: "",
+          apiKey: SIMLI_API_KEY,
+          faceId: "003ad898-7ce6-47d6-9346-6dbae08fa032",
+          voiceId: "42b39f37-515f-4eee-8546-73e841679c1d",
+          firstMessage: "Hi, I’m Ong! I’m here to help you with your outdoor gear shopping. What are you looking for today?",
+          systemPrompt: `
+            You are a customer service agent at an athletic wear store. 
+            You are helping a customer find the right gear for their outdoor activities.
+            You should provide recommendations based on their preferences from the available products below.
+
+            <AvailableItems>
+              <Item>
+                <Name>Trailblazer Running Shoes</Name>
+                <Description>Lightweight and durable running shoes designed for trail running. Features breathable mesh and superior grip.</Description>
+                <Reviews>
+                  <Review>Great shoes for trail running! Very comfortable and provide excellent support.</Review>
+                  <Review>Love these shoes! They are perfect for my daily runs in the park.</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>Summit Hiking Backpack</Name>
+                <Description>Spacious and ergonomic backpack ideal for long hikes. Includes multiple compartments and a hydration pack.</Description>
+                <Reviews>
+                  <Review>This backpack is amazing! It fits everything I need for a day hike and is very comfortable to wear.</Review>
+                  <Review>Highly recommend this backpack for any hiking enthusiast. It's durable and has plenty of space.</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>Peak Performance Jacket</Name>
+                <Description>Waterproof and windproof jacket designed for extreme weather conditions. Keeps you warm and dry during outdoor activities.</Description>
+                <Reviews>
+                  <Review>Excellent jacket for cold and rainy days. Keeps me warm and dry no matter the weather.</Review>
+                  <Review>Best jacket I've ever owned. Perfect for all my outdoor adventures.</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>FlexFit Yoga Pants</Name>
+                <Description>Comfortable and stretchy yoga pants perfect for any workout. Features moisture-wicking fabric.</Description>
+                <Reviews>
+                  <Review>These yoga pants are so comfortable and fit perfectly!</Review>
+                  <Review>Great for yoga and other workouts. Highly recommend!</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>Endurance Running Shorts</Name>
+                <Description>Lightweight and breathable running shorts with a built-in liner. Ideal for long runs.</Description>
+                <Reviews>
+                  <Review>Perfect shorts for running. Very comfortable and breathable.</Review>
+                  <Review>Love the built-in liner. Makes running so much more comfortable.</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>PowerLift Weightlifting Belt</Name>
+                <Description>Durable weightlifting belt designed to provide support during heavy lifts. Adjustable and comfortable.</Description>
+                <Reviews>
+                  <Review>This belt provides great support during my lifts. Highly recommend!</Review>
+                  <Review>Very durable and comfortable. Perfect for weightlifting.</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>HydroFlow Water Bottle</Name>
+                <Description>Insulated water bottle that keeps your drinks cold for hours. Leak-proof and easy to carry.</Description>
+                <Reviews>
+                  <Review>Best water bottle I've ever owned. Keeps my drinks cold all day.</Review>
+                  <Review>Very durable and leak-proof. Highly recommend!</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>ProFit Compression Socks</Name>
+                <Description>Compression socks designed to improve circulation and reduce fatigue. Perfect for long runs and workouts.</Description>
+                <Reviews>
+                  <Review>These socks are amazing! They really help with my circulation during long runs.</Review>
+                  <Review>Very comfortable and supportive. Highly recommend!</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>UltraFlex Resistance Bands</Name>
+                <Description>Set of resistance bands perfect for strength training and stretching. Includes multiple resistance levels.</Description>
+                <Reviews>
+                  <Review>Great set of resistance bands. Perfect for my workouts.</Review>
+                  <Review>Very durable and versatile. Highly recommend!</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>ActiveFit Sports Bra</Name>
+                <Description>Supportive and comfortable sports bra designed for high-impact activities. Features moisture-wicking fabric.</Description>
+                <Reviews>
+                  <Review>Best sports bra I've ever owned. Provides great support and is very comfortable.</Review>
+                  <Review>Perfect for high-impact workouts. Highly recommend!</Review>
+                </Reviews>
+              </Item>
+              <Item>
+                <Name>ZenBalance Yoga Mat</Name>
+                <Description>Non-slip yoga mat with extra cushioning for comfort. Perfect for yoga and other floor exercises.</Description>
+                <Reviews>
+                  <Review>This yoga mat is so comfortable and provides great support.</Review>
+                  <Review>Love the non-slip surface. Makes my workouts so much better.</Review>
+                </Reviews>
+              </Item>
+            </AvailableItems>
+          `,
       }),
-    });
+      })
 
     const data = await response.json();
     const roomUrl = data.roomUrl;
@@ -154,8 +249,8 @@ const SimliAgent: React.FC<SimliAgentProps> = ({ onStart, onClose }) => {
             {isLoading ? (
               <IconSparkleLoader className="h-[20px] animate-loader" />
             ) : (
-              <span className="font-abc-repro-mono font-bold w-[164px]">
-                Test Interaction
+              <span className="font-abc-repro-mono font-bold w-[250px]">
+                Looking for something different?
               </span>
             )}
           </button>
